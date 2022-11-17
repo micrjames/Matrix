@@ -11,7 +11,7 @@ class Matrix {
 	   return this.#mat;
    }
 
-   setItem(val, row, col) {
+   setElement(val, row, col) {
 	   this.#mat[row][col] = val;
    }
 
@@ -21,6 +21,24 @@ class Matrix {
    getCol(which) {
        return this.#mat.map(row => row[which]);
    }
+   
+   get diagonal() {
+	   let pivot = 0;
+	   return this.#mat.map((row, index) => {
+		   if(index == pivot) {
+			  pivot++;
+			  return row[index];
+		   }
+	   });
+   }
+   get counterDiagonal() {
+	   let pivot = 0;
+	   return this.#mat.map((row, index) => {
+		   const revRow = row.reverse();
+		   if(index == pivot) {
+			  pivot++;
+			  return revRow[index];
+		   }
+	   });
+   }
 }
-
-module.exports = { Matrix };

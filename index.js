@@ -1,16 +1,23 @@
 const { Matrix } = require("./Matrix");
+const { Random } = require("./Random");
 
-const mat = new Matrix(2);
+const N = 2;
+const mat = new Matrix(N);
+
+const rand = new Random(1, 10);
 
 console.log(mat.mat);
 
-mat.setItem(1, 0, 0);
+for(let j = 0; j < N; j++) {
+    for(let i = 0; i < N; i++) {
+	   mat.setElement(rand.int, i, j);
+	}
+}
 
 console.log(mat.mat);
 
-const row0 = mat.getRow(0);
-const row1 = mat.getRow(1);
-console.log(row0, row1);
+const diag = mat.diagonal;
+const counter_diagonal = mat.counterDiagonal;
 
-const col1 = mat.getCol(1);
-console.log(col1);
+console.log(diag);
+console.log(counter_diagonal);
