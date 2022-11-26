@@ -1,5 +1,3 @@
-const { dot } = require("./utils");
-
 class Matrix {
    #mat = [];
    #N;
@@ -77,10 +75,12 @@ class Matrix {
 	   return unFlatMats;
    }
    multiply(thatMat) {
-	   return this.#mat.map((row, rowIndex) => row.map((el, colIndex) => {
+	   return this.#mat.map((row, rowIndex) => row.map((_, colIndex) => {
 		  const row = this.getRow(rowIndex);
 		  const col = thatMat.getCol(colIndex);
-		  return dot(row, col);
+		  return row.reduce((accumulator, currentValue, currentIndex) => {
+			 return currentValue * col[currentIndex] + accumulator;
+		  }, 0);
 	   }));
    }
    multiply_scalar(scalar) {
