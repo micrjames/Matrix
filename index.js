@@ -7,8 +7,8 @@ const mat2 = new Matrix(N);
 
 const rand = new Random(1, 10);
 
-console.log(mat1.mat);
-console.log(mat2.mat);
+console.log(`mat1: ${mat1.mat}`);
+console.log(`mat2: ${mat2.mat}`);
 
 for(let j = 0; j < N; j++) {
     for(let i = 0; i < N; i++) {
@@ -21,12 +21,20 @@ for(let j = 0; j < N; j++) {
 	}
 }
 
-console.log(mat1.mat);
-console.log(mat2.mat);
+console.log(`mat1: ${mat1.mat}`);
+console.log(`mat2: ${mat2.mat}`);
+
+const diag = mat1.diagonal;
+console.log(`mat1 diagonal: ${diag}`);
+
+const counterDiag = mat1.counterDiagonal;
+console.log(`mat1 counter diagonal: ${counterDiag}`);
 
 const addedMats = mat1.add(mat2);
-console.log(addedMats);
+console.log(`mat1 + mat2 = ${addedMats}`);
 
 const scalarMult = mat1.multiply_scalar(2);
-console.log(scalarMult);
+console.log(`2 * mat1 = ${scalarMult}`);
 
+const matProd = mat1.multiply(mat2);
+console.log(`mat1 * mat2 = ${matProd}`);

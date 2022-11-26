@@ -77,6 +77,11 @@ class Matrix {
 	   return unFlatMats;
    }
    multiply(thatMat) {
+	   return this.#mat.map((row, rowIndex) => row.map((el, colIndex) => {
+		  const row = this.getRow(rowIndex);
+		  const col = thatMat.getCol(colIndex);
+		  return dot(row, col);
+	   }));
    }
    multiply_scalar(scalar) {
 	   return this.#mat.map(row => row.map(el => scalar * el));
