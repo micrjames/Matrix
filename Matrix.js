@@ -70,7 +70,7 @@ class Matrix {
 		   if(currentIndex < size) return currentValue + flatMats[currentIndex + size]; 
 	   }).filter(el => el);
 	   const unFlatMats = addedMats.reduce((accumulator, _, currentIndex) => {
-		   return currentIndex % 2 == 0 ? accumulator.concat([addedMats.slice(currentIndex, currentIndex + 2)]) : accumulator
+		   return currentIndex % this.#N == 0 ? accumulator.concat([addedMats.slice(currentIndex, currentIndex + 2)]) : accumulator
 	   }, []);
 	   return unFlatMats;
    }
