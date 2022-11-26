@@ -55,12 +55,30 @@ class Matrix {
    get counterDiagonal() {
 	   const counterMatrix = new Matrix(this.#mat.size);
 	   this.#mat.forEach((row, index) => {
-		   const revRow = row.reduce((acc, item)=> [item].concat(acc), []);
+		   const revRow = row.reduce((acc, item) => [item].concat(acc), []);
 		   counterMatrix.setRow(revRow, index);
 	   });
 
 	   return counterMatrix.diagonal;
    }
+
+   add(thatMat) {
+	   const matsArr = this.#mat.concat(thatMat.mat);
+	   const flatMats = matsArr.flat();
+	   const size = this.#mat.flat().length;
+	   const addedMats = flatMats.map((currentValue, currentIndex) => {
+		   if(currentIndex < size) return currentValue + flatMats[currentIndex + size]; 
+	   }).filter(el => el);
+	   const unFlatMats = addedMats.reduce((accumulator, _, currentIndex) => {
+		   return currentIndex % 2 == 0 ? accumulator.concat([addedMats.slice(currentIndex, currentIndex + 2)]) : accumulator
+	   }, []);
+	   return unFlatMats;
+   }
+   multiply(thatMat) {
+   }
+   multiply_scalar(scalar) {
+	   return this.#mat.map(row => row.map(el => scalar * el));
+   }
 }
 
-export default Matrix;
+exports.Matrix = Matrix;
