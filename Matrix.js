@@ -1,3 +1,5 @@
+const { dot } = require("./utils");
+
 class Matrix {
    #mat = [];
    #N;

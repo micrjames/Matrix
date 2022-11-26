@@ -29,3 +29,4 @@ console.log(addedMats);
 
 const scalarMult = mat1.multiply_scalar(2);
 console.log(scalarMult);
+
