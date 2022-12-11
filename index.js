@@ -12,23 +12,23 @@ console.log(`mat2: ${mat2.mat}`);
 
 for(let j = 0; j < N; j++) {
     for(let i = 0; i < N; i++) {
-	   mat1.setElement(rand.int, i, j);
+	   mat1.setElement(rand.integer, i, j);
 	}
 }
 for(let j = 0; j < N; j++) {
     for(let i = 0; i < N; i++) {
-	   mat2.setElement(rand.int, i, j);
+	   mat2.setElement(rand.integer, i, j);
 	}
 }
 
 console.log(`mat1: ${mat1.mat}`);
 console.log(`mat2: ${mat2.mat}`);
 
-const diag = mat1.diagonal;
-console.log(`mat1 diagonal: ${diag}`);
+const diag = mat1.main_diagonal;
+console.log(`mat1 main diagonal: ${diag}`);
 
-const counterDiag = mat1.counterDiagonal;
-console.log(`mat1 counter diagonal: ${counterDiag}`);
+const counterDiag = mat1.main_counterDiagonal;
+console.log(`mat1 main counter diagonal: ${counterDiag}`);
 
 const addedMats = mat1.add(mat2);
 console.log(`mat1 + mat2 = ${addedMats}`);
