@@ -43,8 +43,8 @@ class Matrix {
        return this.#mat.map(row => row[which]);
    }
    
-   get main_diagonal() {
-	   let pivot = 0;
+   getDiagonal(k) {
+	   let pivot = k;
 	   return this.#mat.map((row, index) => {
 		   if(index == pivot) {
 			  pivot++;
@@ -52,16 +52,22 @@ class Matrix {
 		   }
 	   });
    }
-   get main_counterDiagonal() {
+   getCounterDiagonal(k) {
 	   const counterMatrix = new Matrix(this.#mat.size);
 	   this.#mat.forEach((row, index) => {
 		   const revRow = row.reduce((acc, item) => [item].concat(acc), []);
 		   counterMatrix.setRow(revRow, index);
 	   });
 
-	   const reverseCounterDiagonal = counterMatrix.main_diagonal;
+	   const reverseCounterDiagonal = counterMatrix.getDiagonal(k);
 	   const counterDiagonal = reverseCounterDiagonal.reverse();
 	   return counterDiagonal;
+   }
+   get main_diagonal() {
+	   return this.getDiagonal(0);
+   }
+   get main_counterDiagonal() {
+	   return this.getCounterDiagonal(0);
    }
 
    add(thatMat) {
