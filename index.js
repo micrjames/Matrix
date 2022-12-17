@@ -1,7 +1,7 @@
 const { Matrix } = require("./Matrix");
 const { Random } = require("../Random/Random");
 
-const N = 2;
+const N = 5;
 const mat1 = new Matrix(N);
 const mat2 = new Matrix(N);
 
@@ -29,6 +29,12 @@ console.log(`mat1 main diagonal: ${diag}`);
 
 const counterDiag = mat1.main_counterDiagonal;
 console.log(`mat1 main counter diagonal: ${counterDiag}`);
+
+const k_diag = mat1.getDiagonal(1);
+console.log(`mat1 1-diagonal: ${k_diag}`);
+
+const k_counterDiag = mat1.getCounterDiagonal(1);
+console.log(`mat1 1-counter diagonal: ${k_counterDiag}`);
 
 const addedMats = mat1.add(mat2);
 console.log(`mat1 + mat2 = ${addedMats}`);
