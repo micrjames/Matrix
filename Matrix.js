@@ -94,16 +94,11 @@ class Matrix {
    }
 
    add(thatMat) {
-	   const matsArr = this.#mat.concat(thatMat.mat);
-	   const flatMats = matsArr.flat();
-	   const size = this.#mat.flat().length;
-	   const addedMats = flatMats.map((currentValue, currentIndex) => {
-		   if(currentIndex < size) return currentValue + flatMats[currentIndex + size]; 
-	   }).filter(el => el);
-	   const unFlatMats = addedMats.reduce((accumulator, _, currentIndex) => {
-		   return currentIndex % this.#N == 0 ? accumulator.concat([addedMats.slice(currentIndex, currentIndex + 2)]) : accumulator
-	   }, []);
-	   return unFlatMats;
+	   return this.#mat.map((row, rowIndex) => {
+		   return row.map((el, elIndex) => {
+			   return el + thatMat.mat[rowIndex][elIndex];
+		   });
+	   });
    }
    multiply(thatMat) {
 	   return this.#mat.map((row, rowIndex) => row.map((_, colIndex) => {
