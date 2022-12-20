@@ -30,11 +30,29 @@ console.log(`mat1 main diagonal: ${diag}`);
 const counterDiag = mat1.main_counterDiagonal;
 console.log(`mat1 main counter diagonal: ${counterDiag}`);
 
-const k_diag = mat1.getDiagonal(1);
-console.log(`mat1 1-diagonal: ${k_diag}`);
+const one_diag = mat1.getDiagonal(1);
+console.log(`mat1 1-diagonal: ${one_diag}`);
 
-const k_counterDiag = mat1.getCounterDiagonal(1);
-console.log(`mat1 1-counter diagonal: ${k_counterDiag}`);
+const two_diag = mat1.getDiagonal(2);
+console.log(`mat1 2-diagonal: ${two_diag}`);
+
+const neg_one_diag = mat1.getDiagonal(-1);
+console.log(`mat1 (-1)-diagonal: ${neg_one_diag}`);
+
+const neg_two_diag = mat1.getDiagonal(-2);
+console.log(`mat1 (-2)-diagonal: ${neg_two_diag}`);
+
+const one_counterDiag = mat1.getCounterDiagonal(1);
+console.log(`mat1 1-counter diagonal: ${one_counterDiag}`);
+
+const two_counterDiag = mat1.getCounterDiagonal(2);
+console.log(`mat1 2-counter diagonal: ${two_counterDiag}`);
+
+const neg_one_counterDiag = mat1.getCounterDiagonal(-1);
+console.log(`mat1 (-1)-counter diagonal: ${neg_one_counterDiag}`);
+
+const neg_two_counterDiag = mat1.getCounterDiagonal(-2);
+console.log(`mat1 (-2)-counter diagonal: ${neg_two_counterDiag}`);
 
 const addedMats = mat1.add(mat2);
 console.log(`mat1 + mat2 = ${addedMats}`);

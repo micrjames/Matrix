@@ -48,16 +48,29 @@ class Matrix {
    
    getDiagonal(k) {
 	   let diagonal = [];
-	   let pivot = k;
-	   for(let rowIndex = 0; rowIndex < this.#N; rowIndex++) {
-		   for(let colIndex = 0; colIndex < this.#N; colIndex++) {
-			     if(colIndex == pivot) {
-					pivot++;
-					diagonal = [...diagonal, this.#mat[rowIndex][colIndex]];
+	   let pivot = Math.abs(k);
+	   if (k >= 0) {
+		  for(let rowIndex = 0; rowIndex < this.#N; rowIndex++) {
+			  for(let colIndex = 0; colIndex < this.#N; colIndex++) {
+					if(colIndex == pivot) {
+					   pivot++;
+					   diagonal = [...diagonal, this.#mat[rowIndex][colIndex]];
 
-					break;
-				 }
-		   }
+					   break;
+					}
+			  }
+		  }
+	   } else {
+		  for(let colIndex = 0; colIndex < this.#N; colIndex++) {
+			  for(let rowIndex = 0; rowIndex < this.#N; rowIndex++) {
+					if(rowIndex == pivot) {
+					   pivot++;
+					   diagonal = [...diagonal, this.#mat[rowIndex][colIndex]];
+
+					   break;
+					}
+			  }
+		  }
 	   }
 
 	   return diagonal;
