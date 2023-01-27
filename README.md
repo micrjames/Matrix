@@ -40,9 +40,42 @@ Setting up the project involves first importing, in the case of using the class 
 ```
 const mat1 = new Matrix(2);
 ```
-produces a zeroed 2 x 2 matrix, so that we get the following matrix from the code above:
+produces a zeroed 2 x 2 matrix, so that we get the following matrix from the code above,
 
 &#9484; &nbsp; 0 &nbsp; &nbsp; 0 &nbsp; &#9488; <br>
 &#9493; &nbsp; 0 &nbsp; &nbsp; 0 &nbsp; &#9496; .
 
 ## Usage
+Once a matrix has been instantiated, we can read the various ordered collections of elements of the Matrix.
+
+Given the matrix <br>
+&#9484; &nbsp; &nbsp; 11 &nbsp; &nbsp; &nbsp; 4 &nbsp; &nbsp; 1 &nbsp; &nbsp; 32 &nbsp; &nbsp; &#9488; <br>
+&#9475; &nbsp; &nbsp; 7 &nbsp; &nbsp; 87 &nbsp; &nbsp; 21 &nbsp; &nbsp; 45 &nbsp; &#9475; <br>
+&#9475; &nbsp; 67 &nbsp; &nbsp; 13 &nbsp; &nbsp; 54 &nbsp; &nbsp; 81 &nbsp; &#9475; <br>
+&#9493; &nbsp; &nbsp; 3 &nbsp; &nbsp; 56 &nbsp; &nbsp; 99 &nbsp; &nbsp; 12 &nbsp; &#9496; ,
+we can find any particular row, column, or diagonal.
+
+```
+mat1.getRow(2);
+```
+yields [ 67 13 54 81 ].
+```
+mat1.getCol(1);
+```
+yields [ 4 87 13 56 ]. And we can get the diagonals and counter diagonals, similarly.
+```
+mat1.getDiagonal(0);
+```
+yields [ 11 87 54 12 ], which yields the same result as
+```
+mat1.main_diagonal;
+```
+, using a setter function, where k = 0, for the 0<sup>th</sup> diagonal, found above.
+```
+mat1.getCounterDiagonal(0);
+```
+yields [32 21 13 3 ], which yields the same output as
+```
+mat1.main_counterDiagonal;
+```
+, using a setter function, where k = 0, for the 0<sup>th</sup> counter diagonal, found above. Similarly, the k<sup>th</sup> diagonals and counter diagonals can be read by increasing k to the above and decreasing the value of k below the main diagonal and main counter diagonal, and passing that value of k to their arguments.
