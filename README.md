@@ -9,7 +9,6 @@ An implementation of a Matrix with operations with which we can read the ordered
 * [Usage](#usage)
 * [Project Status](#project-status)
 * [Room for Improvement](#room-for-improvement)
-* [Acknowledgements](#acknowledgements)
 * [Contact](#contact)
 
 ## General Info
@@ -79,3 +78,48 @@ yields [32 21 13 3 ], which yields the same output as
 mat1.main_counterDiagonal;
 ```
 , using a setter function, where k = 0, for the 0<sup>th</sup> counter diagonal, found above. Similarly, the k<sup>th</sup> diagonals and counter diagonals can be read by increasing k to the above and decreasing the value of k below the main diagonal and main counter diagonal, and passing that value of k to their arguments.
+Also, we can manipulate the ordered collections of elements in a Matrix or combine those the values of those elements to produce another Matrix.
+For the below examples take mat1 to be the Matrix defined above and, then, mat2 can be defined, in usual way, as
+
+&#9484; &nbsp; &nbsp; 14 &nbsp; &nbsp; 7 &nbsp; &nbsp; 3 &nbsp; &nbsp; 15 &nbsp; &nbsp; &nbsp; &#9488; <br>
+&#9475; &nbsp; &nbsp; 6 &nbsp; &nbsp; 58 &nbsp; &nbsp; 91 &nbsp; &nbsp; 23 &nbsp; &#9475; <br>
+&#9475; &nbsp; 34 &nbsp; &nbsp; 19 &nbsp; &nbsp; 73 &nbsp; &nbsp; 79 &nbsp; &#9475; <br>
+&#9493; &nbsp; &nbsp; 5 &nbsp; &nbsp; 63 &nbsp; &nbsp; 38 &nbsp; &nbsp; 17 &nbsp; &#9496;
+
+There are two such operations that can be performed:
+* We can add each element at an index within a collection in the Matrix to the corresponding element at the same index similarly in another Matrix, such as:
+```
+mat3 = mat1.add(mat2);
+```
+, where mat 3 is <br>
+&#9484; &nbsp; &nbsp; 25 &nbsp; &nbsp; 11 &nbsp; &nbsp; 4 &nbsp; &nbsp; 47 &nbsp; &nbsp; &nbsp; &nbsp; &#9488; <br>
+&#9475; &nbsp; &nbsp; 13 &nbsp; &nbsp; 145 &nbsp; &nbsp; 112 &nbsp; &nbsp; 68 &nbsp; &#9475; <br>
+&#9475; &nbsp; 101 &nbsp; &nbsp; 32 &nbsp; &nbsp; 127 &nbsp; &nbsp; 160 &nbsp; &#9475; <br>
+&#9493; &nbsp; &nbsp; 8 &nbsp; &nbsp; 119 &nbsp; &nbsp; 137 &nbsp; &nbsp; 29 &nbsp; &nbsp; &#9496; .
+* Similarly to the addition operation, we can perform either scalar multiplication or matrix multiplication, where the output yields another matrix. To multiply mat1 by the scalar 5,
+```
+mat3 = mat1.multiply_scalar(5);
+```
+, which yields <br>
+&#9484; &nbsp; &nbsp; &nbsp; 55 &nbsp; &nbsp; 20 &nbsp; &nbsp; &nbsp; 5 &nbsp; &nbsp; &nbsp; 160 &nbsp; &nbsp; &#9488; <br>
+&#9475; &nbsp; &nbsp; &nbsp; 35 &nbsp; &nbsp; 435 &nbsp; 105 &nbsp; &nbsp; 225 &nbsp; &#9475; <br>
+&#9475; &nbsp; 335 &nbsp; &nbsp; 65 &nbsp; &nbsp; 270 &nbsp; &nbsp; 405 &nbsp; &#9475; <br>
+&#9493; &nbsp; &nbsp; 15 &nbsp; &nbsp; 280 &nbsp; &nbsp; 405 &nbsp; &nbsp; 60 &nbsp; &#9496; .
+Furthermore, we can perform matrix multiplication on mat1 and mat2,
+```
+mat1.multiply(mat2);
+```
+, which yields <br>
+&#9484; &nbsp; &nbsp; &nbsp; &nbsp; 372 &nbsp; &nbsp; 2344 &nbsp; &nbsp; 1686 &nbsp; &nbsp; 890 &nbsp; &nbsp; &#9488; <br>
+&#9475; &nbsp; &nbsp; &nbsp; 1559 &nbsp; &nbsp; 8329 &nbsp; &nbsp; 11181 &nbsp; &nbsp; 4530 &nbsp; &#9475; <br>
+&#9475; &nbsp; &nbsp; &nbsp; 3257 &nbsp; &nbsp; 7352 &nbsp; &nbsp; 8404 &nbsp; &nbsp; 6947 &nbsp; &#9475; <br>
+&#9493; &nbsp; &nbsp; 3804 &nbsp; &nbsp; 5906 &nbsp; &nbsp; 12788 &nbsp; &nbsp; 9358 &nbsp; &#9496; .
+
+## Project Status
+This project will be updated with further Matrix operations and other supporting functions as the need arises to work with other projects or as time comes available, so the project is a work in progress.
+
+## Room for Improvement
+There is room for improvement in that the class structures available in javascript work fine for the project currently entails. However, rewriting the project for typescript can only improve the project as the class structures available there are improved over those available in javascript.
+
+## Contact
+Feel free to contact me @micrjamesjr on twitter or on github @micrjames
