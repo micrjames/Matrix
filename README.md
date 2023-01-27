@@ -1,5 +1,5 @@
 # Matrix
-An implementation of a Matrix with operations written in JavaScript.
+An implementation of a Matrix with operations with which we can read the ordered collections of elements in the Matrix, as well as operations with which we can manipulate the ordered collections of elements in a Matrix or by combining the values stored within two Matrices to yield another Matrix.
 
 ## Table Of Contents
 * [General Info](#general-info)
