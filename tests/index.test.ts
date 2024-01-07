@@ -1,4 +1,22 @@
-const { Matrix } = require("./Matrix");
+const { Matrix } = require("../Matrix");
+
+describe("A Matrix implementation.", () => {
+   const numRows = 4;
+   const mat = new Matrix(numRows);
+
+   test.todo("Should have rows are not undefined.");
+
+   test.todo("Should consist of 4 rows.");
+   // mat.size();
+
+   test.todo("Should consist of 4 x 4 set of all zeros.");
+   // mat.mat();
+
+   test.todo("Should be empty when the matrix is cleared.");
+   // mat.clear();
+});
+
+/*
 const { Random } = require("../Random/Random");
 
 const N = 5;
@@ -62,3 +80,4 @@ console.log(`2 * mat1 = ${scalarMult}`);
 
 const matProd = mat1.multiply(mat2);
 console.log(`mat1 * mat2 = ${matProd}`);
+*/
