@@ -4,23 +4,76 @@ describe("A Matrix implementation.", () => {
    const numRows = 4;
    const mat = new Matrix(numRows);
 
-   test("Should not be undefined.", () => {
-   	  expect(mat.mat).not.toBeUndefined();
-   });
+   describe("A Matrix implemented initially with all zeroes.", () => {
+	  test("Should not be undefined.", () => {
+		 expect(mat.mat).not.toBeUndefined();
+	  });
 
-   test("Should have rows that are not undefined.", () => {
-	  mat.mat.forEach(row => {
-		 expect(row).not.toBeUndefined();
+	  test("Should have rows that are not undefined.", () => {
+		 mat.mat.forEach(row => {
+			expect(row).not.toBeUndefined();
+		 });
+	  });
+
+	  test("Should consist of 4 rows.", () => {
+		 expect(mat.mat).toHaveLength(numRows);
+	  });
+
+	  test("Should consist of 4 x 4 set of all zeros.", () => {
+		 mat.mat.forEach(row => {
+			expect(row).toHaveLength(numRows);
+		 });
 	  });
    });
 
-   test("Should consist of 4 rows.", () => {
-	  expect(mat.mat).toHaveLength(numRows);
-   });
+   describe("A Matrix successfully implemented.", () => {
+	  describe("With a row set.", () => {
+		 const row = [1, 1, 1, 1];
+		 const index = 2;
+		 mat.setRow(row, index);
+		 const setMat = mat.mat;
+		 test("Should set the specified row.", () => {
+			const which = setMat.findIndex(element => element == row);
+			expect(which).toBe(index);
+		 }); 
+		 test("Should contain the set row.", () => {
+			const elementAt = setMat.at(2);
+			expect(elementAt).toEqual(row);
+		 });
 
-   test("Should consist of 4 x 4 set of all zeros.", () => {
-	  mat.mat.forEach(row => {
-		 expect(row).toHaveLength(numRows);
+		 test("Should retrieve the row set above.", () => {
+			const retrievedRow = mat.getRow(index);
+			expect(retrievedRow).toEqual(row);
+		 });
+		 test("Should retrive a column created from the row set above.", () => {
+			const retrievedCol = mat.getCol(index);
+			expect(retrievedCol.at(index)).toBe(row.at(index));
+		 });
+	  });
+
+	  describe("With all rows set.", () => {
+		 const row0 = [1, 0, 0, 1];
+		 const row1 = [0, 1, 1, 0];
+		 const row3 = [1, 0, 0, 1];
+		 mat.setRow(row0, 0);
+		 mat.setRow(row1, 1);
+		 mat.setRow(row3, 3);
+		 console.log(mat.mat);
+
+		 describe("Getting the diagonal.", () => {
+			const diagonal = mat.getDiagonal(-4);
+			test.todo("Should not be undefined.");
+			test.todo("Should be of size, N - k.");
+			test.todo("Should retrieve the diagonal of the matrix at given k.");
+			test.todo("Should retrieve the counter diagonal of the matrix at given k.");
+         });
+
+		 describe("Getting the counter diagonal.", () => {
+			test.todo("Should not be undefined.");
+			test.todo("Should be of size, N.");
+			test.todo("Should retrieve the main diagonal of the matrix, i.e. k = 0.");
+			test.todo("Should retrieve the main counter diagonal of the matrix, similar to the above.");
+		 });
 	  });
    });
 
@@ -32,18 +85,6 @@ describe("A Matrix implementation.", () => {
 		 });
 	  });
    });
-
-   test.todo("Should set the specified row."); 
-   test.todo("Should contain the set row.");
-
-   test.todo("Should retrieve the row set above.");
-   test.todo("Should retrive the column create from the set above.");
-
-   test.todo("Should retrieve the diagonal of the matrix at given k.");
-   test.todo("Should retrieve the counter diagonal of the matrix at given k.");
-
-   test.todo("Should retrieve the main diagonal of the matrix, i.e. k = 0.");
-   test.todo("Should retrieve the main counter diagonal of the matrix, similar to the above.");
 });
 
 /*
@@ -68,40 +109,7 @@ for(let j = 0; j < N; j++) {
 	   mat2.setElement(rand.integer, i, j);
 	}
 }
-
-console.log(`mat1: ${mat1.mat}`);
-console.log(`mat2: ${mat2.mat}`);
-
-const diag = mat1.main_diagonal;
-console.log(`mat1 main diagonal: ${diag}`);
-
-const counterDiag = mat1.main_counterDiagonal;
-console.log(`mat1 main counter diagonal: ${counterDiag}`);
-
-const one_diag = mat1.getDiagonal(1);
-console.log(`mat1 1-diagonal: ${one_diag}`);
-
-const two_diag = mat1.getDiagonal(2);
-console.log(`mat1 2-diagonal: ${two_diag}`);
-
-const neg_one_diag = mat1.getDiagonal(-1);
-console.log(`mat1 (-1)-diagonal: ${neg_one_diag}`);
-
-const neg_two_diag = mat1.getDiagonal(-2);
-console.log(`mat1 (-2)-diagonal: ${neg_two_diag}`);
-
-const one_counterDiag = mat1.getCounterDiagonal(1);
-console.log(`mat1 1-counter diagonal: ${one_counterDiag}`);
-
-const two_counterDiag = mat1.getCounterDiagonal(2);
-console.log(`mat1 2-counter diagonal: ${two_counterDiag}`);
-
-const neg_one_counterDiag = mat1.getCounterDiagonal(-1);
-console.log(`mat1 (-1)-counter diagonal: ${neg_one_counterDiag}`);
-
-const neg_two_counterDiag = mat1.getCounterDiagonal(-2);
-console.log(`mat1 (-2)-counter diagonal: ${neg_two_counterDiag}`);
-
+  
 const addedMats = mat1.add(mat2);
 console.log(`mat1 + mat2 = ${addedMats}`);
 
