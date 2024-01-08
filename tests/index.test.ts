@@ -1,4 +1,5 @@
 const { Matrix } = require("../Matrix");
+const { dot } = require("../utils/utils");
 
 describe("A Matrix implementation.", () => {
    const numRows = 4;
@@ -91,53 +92,81 @@ describe("A Matrix implementation.", () => {
 			test("Should retrieve the main diagonal of the matrix, i.e. k = 0.", () => {
 			    expect(main_diagonal).toEqual([1, 1, 1, 1]);
 			});
-			test("Should retrieve the main counter diagonal of the matrix, similar to the above.", () => {
+			test("Should retrieve the main counter diagonal of the matrix, as above.", () => {
 			    expect(main_counterDiagonal).toEqual([1, 1, 1, 1]);
 			});
 		 });
 	  });
 	  describe("With operations applied.", () => {
-		 test("Should be all zeroes when the matrix is cleared.", () => {
-			mat.clear();
-			mat.mat.forEach(row => {
-			   row.forEach(el => {
-				  expect(el).toBe(0);
+		 describe("From array.", () => {
+			const matArr = [[1, 1], [1, 1]];
+			const arrMat = Matrix.fromArray(matArr);
+			test("Should be the same size as array.", () => {
+			    expect(arrMat.mat).toHaveLength(matArr.length);
+			});
+			test("Should have the same elements.", () => {
+			    expect(arrMat.mat).toEqual(matArr);
+			});
+		 });
+		 describe("Apply between matrices.", () => {
+			test("Should add matrices.", () => {
+			    const addedMat = mat.add(mat);
+				mat.mat.forEach((row, rowIndex) => {
+				    row.forEach((el, index) => {
+					    const added = addedMat.getElement(rowIndex, index);
+					    const value = mat.getElement(rowIndex, index);
+					    expect(added).toBe(value + value);
+					});
+				});
+			});
+			test("Should multiply matrices.", () => {
+			    const multMat = mat.multiply(mat);
+				mat.mat.forEach((row, rowIndex) => {
+				    row.forEach((el, index) => {
+					    const dotProd = dot(mat.getRow(rowIndex), mat.getCol(index));
+						const multMatEl = multMat.getElement(rowIndex, index);
+						expect(multMatEl).toBe(dotProd);
+					});
+				});
+			});
+			test("Should perform scalar multiplication.", () => {
+			    const five_mult = mat.multiply_scalar(5);
+				mat.mat.forEach((row, rowIndex) => {
+				    row.forEach((el, index) => {
+					    const scalarMult = five_mult.getElement(rowIndex, index);
+					    const value = mat.getElement(rowIndex, index);
+					    expect(scalarMult).toBe(5 * value);
+					});
+				});
+			});
+		 });
+		 describe("Miscellaneous operations.", () => {
+			test("Should perform transpose.", () => {
+			    const tMat = mat.transpose();
+			    mat.mat.forEach((row: any[], rowIndex: number) => {
+				    row.forEach((_, index: number) => {
+					    const matEl = mat.getElement(index, rowIndex);
+					    const tMatEl = tMat.getElement(rowIndex,index)
+					    expect(matEl).toBe(tMatEl);
+					});
+				});
+			});
+			test("Should retrieve a single element.", () => {
+				expect(mat.getElement(2,1)).toBe(1);
+			});
+			test("Should set a single element.", () => {
+			    mat.setElement(0, 2, 1);
+			    expect(mat.getElement(2,1)).toBe(0); 
+			});
+			test("Should be all zeroes when the matrix is cleared.", () => {
+			   mat.clear();
+			   mat.mat.forEach(row => {
+				  row.forEach(el => {
+					 expect(el).toBe(0);
+				  });
 			   });
 			});
 		 });
 	  });
    });
 });
-
-/*
-const { Random } = require("../Random/Random");
-
-const N = 5;
-const mat1 = new Matrix(N);
-const mat2 = new Matrix(N);
-
-const rand = new Random(1, 10);
-
-console.log(`mat1: ${mat1.mat}`);
-console.log(`mat2: ${mat2.mat}`);
-
-for(let j = 0; j < N; j++) {
-    for(let i = 0; i < N; i++) {
-	   mat1.setElement(rand.integer, i, j);
-	}
-}
-for(let j = 0; j < N; j++) {
-    for(let i = 0; i < N; i++) {
-	   mat2.setElement(rand.integer, i, j);
-	}
-}
-  
-const addedMats = mat1.add(mat2);
-console.log(`mat1 + mat2 = ${addedMats}`);
-
-const scalarMult = mat1.multiply_scalar(2);
-console.log(`2 * mat1 = ${scalarMult}`);
-
-const matProd = mat1.multiply(mat2);
-console.log(`mat1 * mat2 = ${matProd}`);
-*/

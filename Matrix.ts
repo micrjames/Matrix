@@ -7,6 +7,14 @@ class Matrix {
 	   this.clear();
    }
 
+   static fromArray(array: any[]): Matrix {
+	   const N = array.length;
+	   const arrMat = new Matrix(N);
+	   arrMat._mat = array;
+
+	   return arrMat;
+   }
+
    private set() {
 	   for(let i = 0; i < this.N; i++) {
 		   this._mat = [...this._mat, Array(this.N).fill(0)];
@@ -24,6 +32,13 @@ class Matrix {
 
    get mat()  {
 	   return this._mat;
+   }
+
+   setElement(val: any, j: number, i: number) {
+	  this._mat[j][i] = val;
+   }
+   getElement(j: number, i: number): any[] {
+	  return this._mat[j][i];
    }
 
    setRow(val: any[], which: number) {
@@ -81,6 +96,39 @@ class Matrix {
    }
    get main_counterDiagonal() {
 	   return this.getCounterDiagonal(0);
+   }
+
+   transpose(): Matrix {
+	  const tMat = new Matrix(this.N);
+
+	  for(let j = 0; j < this.N; j++) {
+		  for(let i = 0; i < this.N; i++) {
+			  tMat.mat[j][i] = this._mat[i][j];
+		  }
+	  }
+	  return tMat;
+   }
+
+   add(thatMat: Matrix): Matrix {
+	  const addedArray = this._mat.map((row, rowIndex) => {
+		   return row.map((el, elIndex) => {
+			   return el + thatMat.mat[rowIndex][elIndex];
+		   });
+	   });
+	  return Matrix.fromArray(addedArray);
+   }
+   multiply(thatMat: Matrix): Matrix {
+	  const multArray = this._mat.map((row, rowIndex) => row.map((_, colIndex) => {
+		  const row = this.getRow(rowIndex);
+		  const col = thatMat.getCol(colIndex);
+		  return row.reduce((accumulator, currentValue, currentIndex) => {
+			 return currentValue * col[currentIndex] + accumulator;
+		  }, 0);
+	  })); 
+	  return Matrix.fromArray(multArray);
+   }
+   multiply_scalar(scalar: number): Matrix {
+	  return Matrix.fromArray(this._mat.map(row => row.map(el => scalar * el)));
    }
 
    toString(): string {
