@@ -82,6 +82,20 @@ class Matrix {
    get main_counterDiagonal() {
 	   return this.getCounterDiagonal(0);
    }
+
+   toString(): string {
+	  let mstring = '';
+
+	  this._mat.forEach((row, rowIndex) => {
+		mstring += '[\t';
+		row.forEach((el, colIndex) => {
+		   mstring += this._mat[rowIndex][colIndex] + '\t';
+		});
+		mstring += ']\n';
+	  });
+
+	  return mstring;
+   }
 }
 
 exports.Matrix = Matrix;
