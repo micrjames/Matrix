@@ -58,30 +58,52 @@ describe("A Matrix implementation.", () => {
 		 mat.setRow(row0, 0);
 		 mat.setRow(row1, 1);
 		 mat.setRow(row3, 3);
-		 console.log(mat.mat);
 
-		 describe("Getting the diagonal.", () => {
-			const diagonal = mat.getDiagonal(-4);
-			test.todo("Should not be undefined.");
-			test.todo("Should be of size, N - k.");
-			test.todo("Should retrieve the diagonal of the matrix at given k.");
-			test.todo("Should retrieve the counter diagonal of the matrix at given k.");
+		 describe("Getting the diagonal and counter diagonal.", () => {
+			const k = -2;
+			const diagonal = mat.getDiagonal(k);
+			const counterDiagonal = mat.getCounterDiagonal(k);
+			test("Should not be empty.", () => {
+           		expect(diagonal).not.toBeFalsy(); 
+			});
+			test("Should be of size, N - |k|.", () => {
+			    const N = mat.size;
+				expect(diagonal.length).toBe(N - Math.abs(k));
+			});
+			test("Should retrieve the diagonal of the matrix at given k.", () => {
+			    expect(diagonal).toEqual([1, 0]);
+			});
+			test("Should retrieve the counter diagonal of the matrix at given k.", () => {
+			    expect(counterDiagonal).toEqual([0, 1]);
+			});
          });
 
-		 describe("Getting the counter diagonal.", () => {
-			test.todo("Should not be undefined.");
-			test.todo("Should be of size, N.");
-			test.todo("Should retrieve the main diagonal of the matrix, i.e. k = 0.");
-			test.todo("Should retrieve the main counter diagonal of the matrix, similar to the above.");
+		 describe("Getting the main diagonal and counter diagonal.", () => {
+			const main_diagonal = mat.main_diagonal;
+			const main_counterDiagonal = mat.main_counterDiagonal;
+			test("Should not be empty.", () => {
+			    expect(main_diagonal.length).not.toBeFalsy();
+			});
+			test("Should be of size, N.", () => {
+			    const N = mat.size;
+				expect(main_diagonal.length).toBe(N);
+			});
+			test("Should retrieve the main diagonal of the matrix, i.e. k = 0.", () => {
+			    expect(main_diagonal).toEqual([1, 1, 1, 1]);
+			});
+			test("Should retrieve the main counter diagonal of the matrix, similar to the above.", () => {
+			    expect(main_counterDiagonal).toEqual([1, 1, 1, 1]);
+			});
 		 });
 	  });
-   });
-
-   test("Should be all zeroes when the matrix is cleared.", () => {
-	  mat.clear();
-	  mat.mat.forEach(row => {
-		 row.forEach(el => {
-			expect(el).toBe(0);
+	  describe("With operations applied.", () => {
+		 test("Should be all zeroes when the matrix is cleared.", () => {
+			mat.clear();
+			mat.mat.forEach(row => {
+			   row.forEach(el => {
+				  expect(el).toBe(0);
+			   });
+			});
 		 });
 	  });
    });
