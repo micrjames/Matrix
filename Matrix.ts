@@ -4,8 +4,7 @@ class Matrix {
 
    constructor(N: number) {
 	   this.N = N;
-	   this._mat = [];
-	   this.set();
+	   this.clear();
    }
 
    private set() {
@@ -25,6 +24,16 @@ class Matrix {
 
    get mat()  {
 	   return this._mat;
+   }
+
+   setRow(val: any, which: number) {
+	  this._mat[which] = val;
+   }
+   getRow(which: number): any[] {
+	  return this._mat.filter((_, index) => index == which).flat();
+   }
+   getCol(which: number): any[] {
+	  return this._mat.map(row => row[which]);
    }
 }
 

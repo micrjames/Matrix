@@ -4,16 +4,46 @@ describe("A Matrix implementation.", () => {
    const numRows = 4;
    const mat = new Matrix(numRows);
 
-   test.todo("Should have rows are not undefined.");
+   test("Should not be undefined.", () => {
+   	  expect(mat.mat).not.toBeUndefined();
+   });
 
-   test.todo("Should consist of 4 rows.");
-   // mat.size();
+   test("Should have rows that are not undefined.", () => {
+	  mat.mat.forEach(row => {
+		 expect(row).not.toBeUndefined();
+	  });
+   });
 
-   test.todo("Should consist of 4 x 4 set of all zeros.");
-   // mat.mat();
+   test("Should consist of 4 rows.", () => {
+	  expect(mat.mat).toHaveLength(numRows);
+   });
 
-   test.todo("Should be empty when the matrix is cleared.");
-   // mat.clear();
+   test("Should consist of 4 x 4 set of all zeros.", () => {
+	  mat.mat.forEach(row => {
+		 expect(row).toHaveLength(numRows);
+	  });
+   });
+
+   test("Should be all zeroes when the matrix is cleared.", () => {
+	  mat.clear();
+	  mat.mat.forEach(row => {
+		 row.forEach(el => {
+			expect(el).toBe(0);
+		 });
+	  });
+   });
+
+   test.todo("Should set the specified row."); 
+   test.todo("Should contain the set row.");
+
+   test.todo("Should retrieve the row set above.");
+   test.todo("Should retrive the column create from the set above.");
+
+   test.todo("Should retrieve the diagonal of the matrix at given k.");
+   test.todo("Should retrieve the counter diagonal of the matrix at given k.");
+
+   test.todo("Should retrieve the main diagonal of the matrix, i.e. k = 0.");
+   test.todo("Should retrieve the main counter diagonal of the matrix, similar to the above.");
 });
 
 /*
