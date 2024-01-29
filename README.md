@@ -122,4 +122,4 @@ This project will be updated with further Matrix operations and other supporting
 There is room for improvement in that the class structures available in javascript work fine for the project currently entails. However, rewriting the project for typescript can only improve the project as the class structures available there are improved over those available in javascript.
 
 ## Contact
-Feel free to contact me @micrjamesjr on twitter or on github @micrjames
+Feel free to contact me @michaelrjamesjr on twitter.
