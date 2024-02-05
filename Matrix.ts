@@ -1,5 +1,5 @@
 class Matrix {
-   private _mat: any[];
+   private _mat: number[][];
    private N: number;
 
    constructor(N: number) {
@@ -7,7 +7,7 @@ class Matrix {
 	   this.clear();
    }
 
-   static fromArray(array: any[]): Matrix {
+   static fromArray(array: number[][]): Matrix {
 	   const N = array.length;
 	   const arrMat = new Matrix(N);
 	   arrMat._mat = array;
@@ -136,7 +136,7 @@ class Matrix {
 
 	  this._mat.forEach((row, rowIndex) => {
 		mstring += '[\t';
-		row.forEach((el, colIndex) => {
+		row.forEach((_, colIndex) => {
 		   mstring += this._mat[rowIndex][colIndex] + '\t';
 		});
 		mstring += ']\n';

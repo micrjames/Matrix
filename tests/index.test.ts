@@ -112,7 +112,7 @@ describe("A Matrix implementation.", () => {
 			test("Should add matrices.", () => {
 			    const addedMat = mat.add(mat);
 				mat.mat.forEach((row, rowIndex) => {
-				    row.forEach((el, index) => {
+				    row.forEach((_, index) => {
 					    const added = addedMat.getElement(rowIndex, index);
 					    const value = mat.getElement(rowIndex, index);
 					    expect(added).toBe(value + value);
@@ -122,7 +122,7 @@ describe("A Matrix implementation.", () => {
 			test("Should multiply matrices.", () => {
 			    const multMat = mat.multiply(mat);
 				mat.mat.forEach((row, rowIndex) => {
-				    row.forEach((el, index) => {
+				    row.forEach((_, index) => {
 					    const dotProd = dot(mat.getRow(rowIndex), mat.getCol(index));
 						const multMatEl = multMat.getElement(rowIndex, index);
 						expect(multMatEl).toBe(dotProd);
@@ -132,7 +132,7 @@ describe("A Matrix implementation.", () => {
 			test("Should perform scalar multiplication.", () => {
 			    const five_mult = mat.multiply_scalar(5);
 				mat.mat.forEach((row, rowIndex) => {
-				    row.forEach((el, index) => {
+				    row.forEach((_, index) => {
 					    const scalarMult = five_mult.getElement(rowIndex, index);
 					    const value = mat.getElement(rowIndex, index);
 					    expect(scalarMult).toBe(5 * value);
