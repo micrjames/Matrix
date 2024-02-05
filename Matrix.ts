@@ -34,10 +34,10 @@ class Matrix {
 	   return this._mat;
    }
 
-   setElement(val: any, j: number, i: number) {
+   setElement(val: number, j: number, i: number) {
 	  this._mat[j][i] = val;
    }
-   getElement(j: number, i: number): any[] {
+   getElement(j: number, i: number): number {
 	  return this._mat[j][i];
    }
 
