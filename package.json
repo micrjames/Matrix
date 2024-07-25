@@ -1,7 +1,7 @@
 {
   "name": "Matrix",
   "version": "1.0.0",
-  "description": "",
+  "description": "An implementation of a Matrix with the usual matrix operations, as well as some operations specific to usage with computer operations. ",
   "main": "index.js",
   "directories": {
     "test": "tests"
