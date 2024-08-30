@@ -1,4 +1,4 @@
-class Matrix {
+export class Matrix {
    private _mat: number[][];
    private N: number;
 
@@ -145,5 +145,3 @@ class Matrix {
 	  return mstring;
    }
 }
-
-exports.Matrix = Matrix;

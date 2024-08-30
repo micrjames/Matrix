@@ -1,5 +1,5 @@
-const { Matrix } = require("../Matrix");
-const { dot } = require("../utils/utils");
+import { Matrix } from "../Matrix";
+import { dot } from "../utils/utils";
 
 describe("A Matrix implementation.", () => {
    const numRows = 4;
